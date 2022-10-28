@@ -23,7 +23,7 @@ function memorability(suffix) {
 }
 
 function randpermut(names, x) {
-  if(names.length > 1) {
+  if(names.length > 1 && Math.random() > 0.25) {
     n1 = Math.floor(Math.random()*names.length);
     n2 = Math.floor(Math.random()*(names.length-1));
     j = Math.random();
@@ -47,9 +47,9 @@ function randpermut(names, x) {
     } else if(Math.random() < 0.1) {
       s2 = names[n2].slice(0, 3);
     }
-    return s1 + (j < 0.333 ? "_" : (j < 0.667 ? "." : "")) + s2 + (Math.random() < 0.2 ? "" : x);
+    return s1 + (j < 0.333 ? "_" : (j < 0.667 ? "." : "")) + s2 + (Math.random() < 0.6 ? "" : x);
   } else {
-    return Math.random() > 0.5 ? x + names[0] : names[0] + x;
+    return names[0].slice(0, 15-x.length) + x;
   }
 }
 
@@ -72,9 +72,11 @@ function sugerencias(username, name, n) {
     }
   }
   if(addUsername) {
+    let uns = [];
     for(let s of username.match("[a-z]+")) {
-      names.push(s);
+      uns.push(s);
     }
+    names = [...uns, ...names];
   }
 
   let recs = Array(n);
@@ -108,7 +110,7 @@ router.post('/', function(req, res, next) {
       userlist.push(username);
       res.redirect('/');
     } else {
-      let sug = sugerencias(username, name, 10);
+      let sug = sugerencias(username, name, 20);
       sug = sug.filter((x) => userlist.indexOf(x) == -1);
       sug = sug.filter((x) => x.match(/^[a-z0-9_][a-z0-9._]{5,13}[a-z0-9_]$/g) != null);
       res.render('nuevoUsuario', { title: 'Crear usuario', error: "Nombre de usuario no disponible" , suggestions: sug.slice(0,6)});

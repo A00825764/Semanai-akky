@@ -12,10 +12,13 @@ block content
     div.question
       | Ingrese el nombre de usuario:
       input(name='username', pattern='^[a-z0-9_][a-z0-9._]{5,13}[a-z0-9_]$')#username
-      ul.suggestion
-        if suggestions !== null
-          each item in suggestions
-            li(onclick!='document.getElementById(`username`).value = this.innerText')= item
+      if suggestions !== null
+        div.suggestions
+          div
+            | Este nombre de usuario está ocupado, por lo que le sugerimos los siguientes
+          ul
+            each item in suggestions
+              li(onclick!='document.getElementById(`username`).value = this.innerText')= item
       div.minitext
         | El nombre de usuario debe contener entre 7 y 15 caracteres
         | alfanuméricos, guión bajo o punto

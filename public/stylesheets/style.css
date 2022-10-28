@@ -26,6 +26,20 @@ a {
 form div.question {
   margin-bottom: 1rem;
 }
+div.minitext {
+  font-size: 80%;
+  opacity: 0.8;
+  margin: 0.3rem 1rem;
+  width: 18rem;
+}
+
+div.error {
+  color: white;
+  width: 25rem;
+  background: #c87;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.3rem;
+}
 
 form div.question input {
   display: block;
@@ -50,29 +64,37 @@ form div.question input:invalid {
   border-color: #d32;
 }
 
-form div.question ul.suggestion {
+form div.question div.suggestions {
+  color: rgba(0,0,0,0.7);
   background: #fd9;
   margin-top: 0;
   margin-left: 2rem;
-  padding-top: 0.2rem;
-  padding-bottom: 0.6rem;
+  padding: 0.3rem 0 0.5rem 0;
   width: 18rem;
+}
+
+form div.question div.suggestions ul {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding-left: 0;
+  padding: 0;
+  margin: 0;
 }
 
-form div.question ul.suggestion li {
+form div.question div.suggestions div {
+  padding: 0.2rem 0.5rem;
+}
+
+form div.question div.suggestions li {
   display: inline-block;
   background: #ffa;
   padding: 0.5rem;
   border-radius: 0.2rem;
-  margin: 0.4rem 0.4rem 0 0;
+  margin: 0.4rem 0.2rem 0.2rem 0.2rem;
   transition: background 0.2s;
   cursor: default;
-  color: rgba(0,0,0,0.7);
 }
 
 form div.question ul.suggestion li:hover {
